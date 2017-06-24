@@ -1,6 +1,6 @@
 #define WORLD_ICON_SIZE 32
 
-/var/server_name = "Infinity RU"
+/var/server_name = "Area13 (SCP-RP)"
 
 /var/game_id = null
 /hook/global_init/proc/generate_gameid()
@@ -69,12 +69,12 @@
 
 /world
 	mob = /mob/new_player
-	turf = /turf/space
-	area = /area/space
+	turf = /turf/underground
+	area = /area/underground
 	view = "15x15"
 	cache_lifespan = 0	//stops player uploaded stuff from being kept in the rsc past the current session
 	icon_size = WORLD_ICON_SIZE
-	fps = 20
+	fps = 30
 
 #define RECOMMENDED_VERSION 511
 /world/New()
@@ -253,6 +253,7 @@ var/world_topic_spam_protect_time = world.timeofday
 
 		return list2params(L)
 
+	/*
 	else if(copytext(T,1,5) == "laws")
 		var/input[] = params2list(T)
 		if(input["key"] != config.comms_password)
@@ -302,6 +303,7 @@ var/world_topic_spam_protect_time = world.timeofday
 			for(var/mob/M in match)
 				ret[M.key] = M.name
 			return list2params(ret)
+	*/
 
 	else if(copytext(T,1,5) == "info")
 		var/input[] = params2list(T)
@@ -361,6 +363,7 @@ var/world_topic_spam_protect_time = world.timeofday
 				ret[M.key] = M.name
 			return list2params(ret)
 
+	/*
 	else if(copytext(T,1,9) == "adminmsg")
 		/*
 			We got an adminmsg from IRC bot lets split the input then validate the input.
@@ -412,6 +415,7 @@ var/world_topic_spam_protect_time = world.timeofday
 			if(A != C)
 				to_chat(A, amessage)
 		return "Message Successful"
+	*/
 
 	else if(copytext(T,1,6) == "notes")
 		/*
