@@ -68,7 +68,7 @@
 /*
 	Predicate Helpers
 */
-/proc/is_station_area(var/area/A)
+/proc/is_site_area(var/area/A)
 	. = isStationLevel(A.z)
 
 /proc/is_contact_area(var/area/A)
@@ -77,11 +77,11 @@
 /proc/is_player_area(var/area/A)
 	. = isPlayerLevel(A.z)
 
-/proc/is_not_space_area(var/area/A)
-	. = !istype(A,/area/space)
+/proc/is_not_underground_area(var/area/A)
+	. = !istype(A,/area/underground)
 
-/proc/is_not_shuttle_area(var/area/A)
-	. = !istype(A,/area/shuttle)
+/proc/is_not_vehicle_area(var/area/A)
+	. = !istype(A,/area/vehicle)
 
 /proc/is_area_with_turf(var/area/A)
 	. = isnum(A.x)
@@ -92,15 +92,15 @@
 /proc/is_coherent_area(var/area/A)
 	return !is_type_in_list(A, using_map.area_coherency_test_exempt_areas)
 
-/var/list/is_station_but_not_space_or_shuttle_area = list(/proc/is_station_area, /proc/is_not_space_area, /proc/is_not_shuttle_area)
+/var/list/is_site_but_not_underground_or_vehicle_area = list(/proc/is_site_area, /proc/is_not_underground_area, /proc/is_not_vehicle_area)
 
-/var/list/is_contact_but_not_space_or_shuttle_area = list(/proc/is_contact_area, /proc/is_not_space_area, /proc/is_not_shuttle_area)
+/var/list/is_contact_but_not_underground_or_vehicle_area = list(/proc/is_contact_area, /proc/is_not_underground_area, /proc/is_not_vehicle_area)
 
-/var/list/is_player_but_not_space_or_shuttle_area = list(/proc/is_player_area, /proc/is_not_space_area, /proc/is_not_shuttle_area)
+/var/list/is_player_but_not_underground_or_vehicle_area = list(/proc/is_player_area, /proc/is_not_underground_area, /proc/is_not_vehicle_area)
 
 
 /*
 	Misc Helpers
 */
-#define teleportlocs area_repository.get_areas_by_name_and_coords(is_player_but_not_space_or_shuttle_area)
-#define stationlocs area_repository.get_areas_by_name(is_player_but_not_space_or_shuttle_area)
+#define teleportlocs area_repository.get_areas_by_name_and_coords(is_player_but_not_underground_or_vehicle_area)
+#define sitelocs area_repository.get_areas_by_name(is_player_but_not_underground_or_vehicle_area)
